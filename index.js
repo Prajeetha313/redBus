@@ -10,6 +10,7 @@ require('dotenv').config();
 var cors = require('cors')
 
 app.use(cors())
+app.use("/",express.static(path.join(__dirname,'./client/build')))
 app.use(function(req, res, next){
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Credentials", "true");
@@ -35,15 +36,15 @@ app.use("/trip", (triproute));
 app.use("/booking",(Bookings))
 
 
-if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
-    app.use(express.static('./client/build'));
-    app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname + './client/build/index.html'));
-    });
-}
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../client/build/index.html'))
-// })
-// app.listen(process.env.PORT||5000,()=>{
-//     console.log("server is listening")
-// })
+// if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
+//     app.use(express.static('./client/build'));
+//     app.get('*', (req, res) => {
+//         res.sendFile(path.join(__dirname + './client/build/index.html'));
+//     });
+// }
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build/index.html'))
+})
+app.listen(process.env.PORT||5000,()=>{
+    console.log("server is listening")
+})
