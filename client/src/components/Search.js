@@ -38,7 +38,7 @@ function Search ({trip, getTrip}) {
        console.log(e.currentTarget.id); 
 
         try{
-            const res = await axios.post("http://localhost:5000/trip/getTripById", {'id' : e.currentTarget.id})
+            const res = await axios.post("http://localhost:5000/api/trip/getTripById", {'id' : e.currentTarget.id})
             console.log(res.data.data.busId)
             console.log(value)
             window.location.href =`http://localhost:3000/searchTrip/viewSeats/${res.data.data.busId}/${value}`

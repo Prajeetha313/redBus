@@ -92,12 +92,12 @@ const Home = ({user,type}) => {
 
     useEffect(()=>{
         const loadSources = async()=> {
-            const response = await axios.get("http://localhost:5000/trip/getSource")
+            const response = await axios.get("http://localhost:5000/api/trip/getSource")
             console.log(response.data);
             setAvailSource(response.data.data);
         }
         const loadDestination = async() => {
-            const response = await axios.get("http://localhost:5000/trip/getDestination")
+            const response = await axios.get("http://localhost:5000/api/trip/getDestination")
             console.log(response.data);
             setAvailDestination(response.data.data);
         }
