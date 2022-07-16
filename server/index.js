@@ -1,5 +1,6 @@
 var express = require("express")
 var app = express()
+const path = require('path');
 const connectDB = require('./config/db')
 const authRoute = require("./routes/auth")
 const busroute=require("./routes/bus")
@@ -33,6 +34,9 @@ app.use("/bus", (busroute));
 app.use("/trip", (triproute));
 app.use("/booking",(Bookings))
 
-app.listen(process.env.PORT,()=>{
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build/index.html'))
+})
+app.listen(process.env.PORT||5000,()=>{
     console.log("server is listening")
 })
