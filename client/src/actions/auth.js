@@ -39,7 +39,7 @@ import {
     REGISTER_FAIL
 } from './type'
 import setAuthToken from "../utils/setAuthtoken";
-const API_URL = "https://bus-ticket-booking-application.herokuapp.com/"
+const API_URL = "http://localhost:5000/"
 
 export const loadUser = () => async (dispatch) => {
 	if (localStorage.token) {
@@ -47,7 +47,7 @@ export const loadUser = () => async (dispatch) => {
 	}
 
 	try {
-		const res = await axios.get("https://bus-ticket-booking-application.herokuapp.com/auth");
+		const res = await axios.get("http://localhost:5000/auth");
 
 		dispatch({
 			type: USER_LOADED,
@@ -118,7 +118,7 @@ async (dispatch) => {
         // };
         
 		const res = await axios.post(
-			"https://bus-ticket-booking-application.herokuapp.com/bus/addbus" ,
+			"http://localhost:5000/bus/addbus" ,
 			formData,
 		);
 
@@ -143,7 +143,7 @@ async (dispatch) => {
 export const fetchBuses =()=>async(dispatch)=>{
     console.log("suriya")
     try{
-        const res=await axios.get("https://bus-ticket-booking-application.herokuapp.com/bus/allbus")
+        const res=await axios.get("http://localhost:5000/bus/allbus")
         dispatch({
             type:VIEW_BUS_SUCCESSFULLY,
             payload:res.data
@@ -177,7 +177,7 @@ async (dispatch) => {
         // };
         
 		const res = await axios.post(
-			"https://bus-ticket-booking-application.herokuapp.com/trip/createtrip" ,
+			"http://localhost:5000/trip/createtrip" ,
 			formData,
 		);
 
@@ -204,7 +204,7 @@ async (dispatch) => {
 export const fetchTrip =()=>async(dispatch)=>{
     console.log("suriya")
     try{
-        const res=await axios.get("https://bus-ticket-booking-application.herokuapp.com/trip/alltrip")
+        const res=await axios.get("http://localhost:5000/trip/alltrip")
         dispatch({
             type:VIEW_TRIP_SUCCESSS,
             payload:res.data
@@ -238,7 +238,7 @@ async (dispatch) => {
         // };
         
 		const res = await axios.post(
-			"https://bus-ticket-booking-application.herokuapp.com/auth/signup" ,
+			"http://localhost:5000/auth/signup" ,
 			formData,
 		);
 
@@ -271,7 +271,7 @@ async (dispatch) => {
 	console.log("suriya prakash")
 	try {
 		const res = await axios.post(
-			`https://bus-ticket-booking-application.herokuapp.com/auth/changepassword`,
+			`http://localhost:5000/auth/changepassword`,
 			formData
 		);
 
@@ -298,7 +298,7 @@ export const getTrip = (formData) => async(dispatch) => {
     console.log("hai")
     try{
         console.log(formData)
-        const res = await axios.post("https://bus-ticket-booking-application.herokuapp.com/trip/getTrip", formData)
+        const res = await axios.post("http://localhost:5000/trip/getTrip", formData)
         console.log(res)
         dispatch({
             type : GET_TRIP_SUCCESSS, 
@@ -318,7 +318,7 @@ export const getTripById = (id) => async(dispatch) => {
     console.log("hai")
     try{
         console.log(id)
-        const res = await axios.post("https://bus-ticket-booking-application.herokuapp.com/trip/getTripById", {'id' : id})
+        const res = await axios.post("http://localhost:5000/trip/getTripById", {'id' : id})
         console.log(res)
         dispatch({
             type : GET_TRIP_SUCCESSS, 
@@ -336,7 +336,7 @@ export const getTripById = (id) => async(dispatch) => {
 
 export const getBusById = (id) => async(dispatch) => {
     try {
-        const res = await axios.post("https://bus-ticket-booking-application.herokuapp.com/bus/getBusById", {'id' : id})
+        const res = await axios.post("http://localhost:5000/bus/getBusById", {'id' : id})
         console.log(res)
         dispatch({
             type: GET_BUS_SUCCESSS, 
@@ -356,7 +356,7 @@ export const getBusById = (id) => async(dispatch) => {
 export const getBooking = (id) => async(dispatch) => {
     try {
         console.log("suriya")
-        const res = await axios.get(`https://bus-ticket-booking-application.herokuapp.com/booking/getbookings/${id}`)
+        const res = await axios.get(`http://localhost:5000/booking/getbookings/${id}`)
         console.log(res)
         dispatch({
             type: GET_BOOKING_SUCCESS, 
@@ -385,7 +385,7 @@ export const profile =
 
 		try {
 			const res = await axios.post(
-				"https://bus-ticket-booking-application.herokuapp.com/editprofile2",
+				"http://localhost:5000/editprofile2",
 				body,
 				config
 			);
@@ -411,7 +411,7 @@ export const profile =
     export const deletetrip = (id) => async(dispatch) => {
         try {
             console.log("suriya prakash")
-            const res = await axios.delete(`https://bus-ticket-booking-application.herokuapp.com/trip/canceltrip/${id}`)
+            const res = await axios.delete(`http://localhost:5000/trip/canceltrip/${id}`)
             console.log(res)
             dispatch({
                 type: DELETE_TRIP_SUCCESS, 
@@ -430,7 +430,7 @@ export const profile =
 export const createbooking = (email, phoneNumber, fare, passengerDetails, tripId, busId, seatNumber) => async(dispatch) =>{
     try {
         console.log("Hai")
-        const res = await axios.post("https://bus-ticket-booking-application.herokuapp.com/booking/createbooking", {email, phoneNumber, fare, passengerDetails, tripId, busId, seatNumber})
+        const res = await axios.post("http://localhost:5000/booking/createbooking", {email, phoneNumber, fare, passengerDetails, tripId, busId, seatNumber})
         console.log(res)
         dispatch({
             type : CREATE_BOOKING_SUCCESS
@@ -462,7 +462,7 @@ export const register = (formData) => async(dispatch) => {
 			},
 		};
         // const body = JSON.stringify({ name, email, password, age, gender });
-        const res = await axios.post("https://bus-ticket-booking-application.herokuapp.com/auth/signup", formData, config)
+        const res = await axios.post("http://localhost:5000/auth/signup", formData, config)
         console.log(res.data)
         dispatch({
             type: REGISTER_SUCCESS, 
@@ -482,7 +482,7 @@ export const register = (formData) => async(dispatch) => {
 export const fetchMytrip =()=>async(dispatch)=>{
     console.log("suriya")
     try{
-        const res=await axios.get("https://bus-ticket-booking-application.herokuapp.com/booking/allbookings")
+        const res=await axios.get("http://localhost:5000/booking/allbookings")
         dispatch({
             type:GET_MY_BOOKING_SUCCESS,
             payload:res.data
@@ -507,7 +507,7 @@ export const fetchMytrip =()=>async(dispatch)=>{
 export const fetchTicket =()=>async(dispatch)=>{
     console.log("suriya")
     try{
-        const res=await axios.get("https://bus-ticket-booking-application.herokuapp.com/booking/getticket")
+        const res=await axios.get("http://localhost:5000/booking/getticket")
         dispatch({
             type:FETCH_TICKET_SUCCESS,
             payload:res.data
@@ -535,7 +535,7 @@ async (dispatch) => {
 	console.log("suriya prakash")
 	try {
 		const res = await axios.delete(
-			`https://bus-ticket-booking-application.herokuapp.com/booking/deletebooking/${id}`,
+			`http://localhost:5000/booking/deletebooking/${id}`,
 		);
 
 		dispatch({
