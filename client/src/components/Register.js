@@ -4,13 +4,7 @@ import { useDispatch } from 'react-redux';
 import LoginImage from '../images/login.PNG' 
 
 const Register = () => {
-    // const [name, setName] = useState("");
-    // const [email, setEmail] = useState("");
-    // const [password, setPassword] = useState("");
     const [cpassword, setCpassword] = useState("");
-    // const [age, setAge] = useState("");
-    // const [gender, setGender] = useState("");
-
     const [formData, setFormData] = useState( {
         name : "", 
         email : "", 
@@ -55,7 +49,7 @@ const Register = () => {
                     boxShadow: '1px 1px 5px rgba(0, 0, 0, 0.1)'
                 }}>
                 <div className="column">
-                    <img src = {LoginImage} style={{width:'90%', height:'100%'}}/>
+                    <img src = {LoginImage} style={{width:'90%', height:'100%'}} alt='image' />
                 </div>
                 <div className="column">
                 <form method="post" onSubmit={(e)=>handleSubmit(e)} >
