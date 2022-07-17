@@ -39,7 +39,7 @@ import {
     REGISTER_FAIL
 } from './type'
 import setAuthToken from "../utils/setAuthtoken";
-const API_URL = "http://localhost:5000/api"
+const API_URL = "http://localhost:5000/api/"
 
 export const loadUser = () => async (dispatch) => {
 	if (localStorage.token) {
