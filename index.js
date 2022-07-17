@@ -10,6 +10,7 @@ require('dotenv').config();
 var cors = require('cors')
 
 app.use(cors())
+// console.log(__dirname)
 app.use("/",express.static(path.join(__dirname,'./client/build')))
 app.use(function(req, res, next){
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -20,31 +21,24 @@ app.use(function(req, res, next){
 })
 
 
-app.use(express.static(__dirname))
-
 var bodyParser = require('body-parser');    
+const { constants } = require("buffer");
 // const Bookings = require("./model/Bookings")
 app.use(bodyParser.json({limit:'50mb'}));
 app.use(bodyParser.urlencoded({limit:'50mb', extended:true}));
 
-app.get("/",(req,res)=>{
-    res.send("suriya")
-})
-app.use("/api/auth", (authRoute));
-app.use("/api/bus", (busroute));
-app.use("/api/trip", (triproute));
-app.use("/api/booking",(Bookings))
 
+app.use("/auth", (authRoute));
+app.use("/bus", (busroute));
+app.use("/trip", (triproute));
+app.use("/booking",(Bookings));
+// if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
+    // app.use(express.static('./client/build'));
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname ,'./client/build/index.html'));
+});
+//    }
 
-if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
-    app.use(express.static('./client/build'));
-    app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname + './client/build/index.html'));
-    });
-}
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../client/build/index.html'))
-// })
 app.listen(process.env.PORT||5000,()=>{
     console.log("server is listening")
 })
